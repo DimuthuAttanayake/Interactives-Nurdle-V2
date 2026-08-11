@@ -217,7 +217,7 @@ export const BEATS = [
 	{
 		id: '06.9',
 		tag: 'Seadrift, Texas',
-		text: 'So on the Gulf Coast of Texas, citizens have taken up the fight.',
+		text: 'On the Gulf Coast of Texas, citizens have taken up the fight.',
 		tone: 'g',
 		scene: null,
 		layout: 'globe',
