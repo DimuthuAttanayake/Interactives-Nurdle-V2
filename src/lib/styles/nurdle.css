@@ -222,7 +222,7 @@ svg.plate--wide {
 	/* fills the 26rem column, so every step's box is the same width no matter
 	   how long its copy is */
 	width: 100%;
-	padding: 1.25rem 1.5rem;
+	padding: clamp(0.85rem, 2.4vw, 1.25rem) clamp(1rem, 3vw, 1.5rem);
 	border: 1px solid rgba(255, 255, 255, 0.15);
 	border-radius: 0.5rem;
 	background: rgba(0, 0, 0, 0.7);
@@ -231,10 +231,12 @@ svg.plate--wide {
 	color: #ffffff;
 }
 .step__card .place {
-	margin: 0 0 0.6rem;
+	margin: 0 0 0.5rem;
 	font-family: var(--serif);
-	font-size: 1.42rem;
+	/* was a fixed 1.42rem, which stayed full size on a phone */
+	font-size: clamp(1rem, 2.6vw, 1.42rem);
 	font-weight: 700;
+	line-height: 1.25;
 	color: #ffcc00;
 }
 .step__card.g .place {
@@ -245,9 +247,39 @@ svg.plate--wide {
 }
 .step__card .text {
 	margin: 0;
-	font-size: clamp(1.28rem, 1.65vw, 1.55rem);
-	line-height: 1.52;
+	/* The old floor of 1.28rem never came down: 1.65vw only reaches it at
+	   ~776px, so every phone got desktop-sized type over a globe that had
+	   shrunk to fit the screen. A steeper vw term with a smaller floor lets
+	   the copy track the globe instead of overwhelming it. */
+	font-size: clamp(0.95rem, 2.9vw, 1.5rem);
+	line-height: 1.5;
 	color: #e5e5e5;
+}
+
+/* On a phone the globe is nearly as wide as the screen, so a centred card
+   sits right on top of it. Drop the copy to the bottom of the viewport and
+   narrow it, leaving the globe readable above. */
+@media (max-width: 640px) {
+	.step {
+		align-items: flex-end;
+		padding: 1rem 1rem 4.5rem;
+	}
+
+	.step__card {
+		background: rgba(0, 0, 0, 0.78);
+	}
+}
+
+/* Short landscape windows have the same problem vertically */
+@media (max-height: 520px) {
+	.step {
+		align-items: flex-end;
+		padding-bottom: 1.5rem;
+	}
+
+	.step__card .text {
+		font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+	}
 }
 
 /* ---- outro ---- */

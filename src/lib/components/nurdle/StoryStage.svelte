@@ -268,8 +268,11 @@
 			path(land);
 			ctx.fillStyle = '#181c1f';
 			ctx.fill();
-			ctx.strokeStyle = '#464f54';
-			ctx.lineWidth = hair(0.5);
+			// Deliberately kept a step dimmer than the sighting dots above, which
+			// sit at rgba(241, 236, 224, 0.5) — roughly #7d7a74 once composited.
+			// The coastline has to read without competing with them.
+			ctx.strokeStyle = '#6b7780';
+			ctx.lineWidth = hair(0.6);
 			ctx.stroke();
 		}
 
@@ -302,26 +305,47 @@
 
 			ctx.globalAlpha = strength * near;
 
-			// a bright core with a glow, so the marker reads as lit rather than
-			// as one more pale dot in the sighting field
+			// Built like a lit bulb rather than a flat dot: a wide additive bloom,
+			// the lamp body inside it, and a white-hot centre. Real light sources
+			// blow out to white at the middle — that highlight is what sells it
+			// as shining rather than merely being a bright yellow circle.
+			const r = 4.6;
+
 			ctx.save();
-			ctx.shadowColor = 'rgba(255, 221, 0, 1)';
-			ctx.shadowBlur = 16;
+
+			// the bloom. 'lighter' adds to what's underneath instead of painting
+			// over it, which is how emitted light behaves.
+			ctx.globalCompositeOperation = 'lighter';
+			const halo = ctx.createRadialGradient(pt[0], pt[1], 0, pt[0], pt[1], r * 5);
+			halo.addColorStop(0, 'rgba(255, 236, 140, 0.55)');
+			halo.addColorStop(0.3, 'rgba(255, 214, 20, 0.26)');
+			halo.addColorStop(1, 'rgba(255, 200, 0, 0)');
+			ctx.fillStyle = halo;
 			ctx.beginPath();
-			ctx.arc(pt[0], pt[1], 4.6, 0, 6.283);
-			ctx.fillStyle = '#ffe500';
+			ctx.arc(pt[0], pt[1], r * 5, 0, 6.283);
 			ctx.fill();
+
+			// the lamp body
+			ctx.shadowColor = 'rgba(255, 226, 70, 1)';
+			ctx.shadowBlur = 24;
+			ctx.beginPath();
+			ctx.arc(pt[0], pt[1], r, 0, 6.283);
+			ctx.fillStyle = '#ffe93a';
+			ctx.fill();
+
+			// the hot centre
+			ctx.shadowBlur = 0;
+			ctx.beginPath();
+			ctx.arc(pt[0], pt[1], r * 0.42, 0, 6.283);
+			ctx.fillStyle = '#fffdf0';
+			ctx.fill();
+
 			ctx.restore();
 
-			ctx.lineWidth = 2;
-			ctx.strokeStyle = '#ffd400';
-			ctx.beginPath();
-			ctx.arc(pt[0], pt[1], 4.6, 0, 6.283);
-			ctx.stroke();
-
+			// the ring still pulses outward, now reading as the bulb's falloff
 			ctx.beginPath();
 			ctx.arc(pt[0], pt[1], 10 + (1 - near) * 7, 0, 6.283);
-			ctx.strokeStyle = 'rgba(255, 204, 0, 0.85)';
+			ctx.strokeStyle = 'rgba(255, 214, 40, 0.8)';
 			ctx.lineWidth = 1.4;
 			ctx.stroke();
 		}

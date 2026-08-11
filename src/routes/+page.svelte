@@ -25,10 +25,10 @@
 <svelte:window bind:scrollY bind:innerHeight onresize={measure} onscroll={measure} />
 
 <svelte:head>
-	<title>How Tiny Plastic Polymers Spilled from Supply Chains Pollute the World</title>
+	<title>How Tiny Plastic Polymers Pollute the World</title>
 	<meta
 		name="description"
-		content="How primary plastic polymers used to manufacture plastic products accidentally escape the supply chain and end up in rivers, oceans and beaches."
+		content="How primary plastics used to manufacture plastic products accidentally escape the supply chain and end up in rivers, oceans and beaches."
 	/>
 </svelte:head>
 
@@ -42,12 +42,10 @@
 			<ellipse cx="20" cy="17" rx="5.5" ry="3.4" fill="#fff" opacity="0.6" />
 		</svg>
 		<div class="cover__kicker reveal d1">Plastic Pollution</div>
-		<h1 class="reveal d1">
-			How Tiny Plastic Polymers Spilled from Supply Chains Pollute the World
-		</h1>
+		<h1 class="reveal d1">How Tiny Plastic Polymers Pollute the World</h1>
 		<p class="dek reveal d2">
-			How primary plastic polymers used to manufacture plastic products accidentally escape the
-			supply chain and end up in rivers, oceans and beaches.
+			How primary plastics used to manufacture plastic products accidentally escape the supply
+			chain and end up in rivers, oceans and beaches.
 		</p>
 		<div class="cover__by reveal d2">By Dimuthu Attanayake</div>
 		<div class="scroll-cue reveal d2"><span class="dot"></span> Scroll to begin</div>
