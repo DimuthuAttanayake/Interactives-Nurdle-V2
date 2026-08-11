@@ -1,0 +1,453 @@
+/* Ported from nurdle-scrolly-flow.html. Plain CSS (not a Svelte <style> block)
+   because these classes are shared across several components and Svelte's
+   scoped-style compiler would prune them as unused in each one. */
+
+:root {
+	--bg: #0d0f11;
+	--bg-2: #15181b;
+	--ink: #edebe4;
+	--muted: #8c8f8a;
+	--line: #2a2e31;
+	--pearl: #f1ece0;
+	--amber: #e0a34a;
+	--teal: #4fbfa6;
+	--green: #86ae86;
+	--accent: var(--amber);
+	--sans: 'Libre Franklin', system-ui, sans-serif;
+	--serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+.nurdle-story * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: var(--bg);
+	color: var(--ink);
+	font-family: var(--serif);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+}
+
+.progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 3px;
+	width: 0;
+	background: var(--accent);
+	z-index: 60;
+	transition:
+		width 0.12s linear,
+		background-color 0.5s ease;
+}
+
+/* ---- cover ---- */
+.cover {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 96px clamp(20px, 7vw, 120px);
+	background: radial-gradient(120% 80% at 50% 18%, var(--bg-2), var(--bg) 68%);
+	overflow: hidden;
+}
+.cover__mark {
+	margin-bottom: 30px;
+}
+.cover__kicker {
+	font-family: var(--sans);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+	color: var(--amber);
+	margin-bottom: 22px;
+}
+.cover h1 {
+	font-weight: 700;
+	font-size: clamp(2.4rem, 6.6vw, 5.2rem);
+	line-height: 1.02;
+	letter-spacing: -0.015em;
+	color: var(--pearl);
+	max-width: 15ch;
+}
+.cover h1 em {
+	font-style: italic;
+}
+.cover .dek {
+	font-size: clamp(1.05rem, 1.9vw, 1.4rem);
+	color: var(--ink);
+	opacity: 0.82;
+	max-width: 54ch;
+	margin-top: 26px;
+	line-height: 1.55;
+}
+.cover__by {
+	font-family: var(--sans);
+	font-size: 12px;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--muted);
+	margin-top: 30px;
+}
+.scroll-cue {
+	margin-top: 54px;
+	font-family: var(--sans);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--muted);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.scroll-cue .dot {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--amber);
+	animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 0.3;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1.6);
+	}
+}
+
+/* ---- the one sticky stage, and the text that scrolls over it ---- */
+.story {
+	position: relative;
+}
+.story .stage {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	background: radial-gradient(120% 90% at 50% 34%, var(--bg-2), var(--bg) 72%);
+}
+.stage__grid {
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(var(--line) 1px, transparent 1px),
+		linear-gradient(90deg, var(--line) 1px, transparent 1px);
+	background-size: 48px 48px;
+	opacity: 0.13;
+	pointer-events: none;
+}
+/* the text sits dead centre, so the stage is dimmed evenly rather than
+   scrimmed from one edge */
+.stage__scrim {
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(58% 46% at 50% 50%, rgba(0, 0, 0, 0.42), transparent 78%);
+	z-index: 3;
+	pointer-events: none;
+}
+.story canvas {
+	position: absolute;
+	inset: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+/* the storyboard plates, stacked and cross-faded */
+.plates {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+}
+.plate-slot {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	will-change: opacity;
+}
+svg.plate {
+	width: min(78vw, 760px);
+	height: auto;
+	max-height: 82vh;
+	display: block;
+	overflow: visible;
+}
+svg.plate--wide {
+	width: min(92vw, 1080px);
+}
+
+/* ---- scroll text ----
+   Matches the Interactives-Final scrolly: a centred 26rem column, one step per
+   viewport, plain system-ui body copy at 1rem with a serif place label. */
+.steps {
+	position: relative;
+	margin-top: -100vh;
+	z-index: 5;
+	pointer-events: none;
+}
+.step {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	/* wider than the 26rem reference column, for a longer line */
+	max-width: 42rem;
+	margin: 0 auto;
+	padding: 2rem 1.5rem;
+	box-sizing: border-box;
+	font-family: system-ui, sans-serif;
+}
+.step__card {
+	pointer-events: auto;
+	/* fills the 26rem column, so every step's box is the same width no matter
+	   how long its copy is */
+	width: 100%;
+	padding: 1.25rem 1.5rem;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 0.5rem;
+	background: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	color: #ffffff;
+}
+.step__card .place {
+	margin: 0 0 0.6rem;
+	font-family: var(--serif);
+	font-size: 1.42rem;
+	font-weight: 700;
+	color: #ffcc00;
+}
+.step__card.g .place {
+	color: var(--green);
+}
+.step__card.t .place {
+	color: var(--teal);
+}
+.step__card .text {
+	margin: 0;
+	font-size: clamp(1.28rem, 1.65vw, 1.55rem);
+	line-height: 1.52;
+	color: #e5e5e5;
+}
+
+/* ---- outro ---- */
+.outro {
+	min-height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 80px clamp(20px, 7vw, 120px);
+	border-top: 1px solid var(--line);
+	background: radial-gradient(120% 80% at 50% 100%, var(--bg-2), var(--bg) 65%);
+}
+.outro__mono {
+	font-family: var(--sans);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.outro h2 {
+	font-weight: 700;
+	font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+	color: var(--pearl);
+	margin: 16px 0 12px;
+	max-width: 22ch;
+	line-height: 1.1;
+}
+.outro p {
+	color: var(--muted);
+	max-width: 52ch;
+	font-size: 1.02rem;
+}
+
+/* ---- reveal choreography ---- */
+.reveal {
+	opacity: 0;
+	transform: translateY(22px);
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s ease;
+}
+.is-visible .reveal {
+	opacity: 1;
+	transform: none;
+}
+.is-visible .reveal.d1 {
+	transition-delay: 0.08s;
+}
+.is-visible .reveal.d2 {
+	transition-delay: 0.18s;
+}
+.draw {
+	transition: stroke-dashoffset 1.15s ease 0.2s;
+}
+.is-visible .draw {
+	stroke-dashoffset: 0 !important;
+}
+.fade {
+	opacity: 0;
+	transition: opacity 0.7s ease;
+}
+.is-visible .fade {
+	opacity: 1;
+}
+.is-visible .fade.s1 {
+	transition-delay: 0.3s;
+}
+.is-visible .fade.s2 {
+	transition-delay: 0.55s;
+}
+.is-visible .fade.s3 {
+	transition-delay: 0.82s;
+}
+.drop {
+	opacity: 0;
+	transform: translateY(-16px);
+	transition:
+		opacity 0.6s ease,
+		transform 0.6s ease;
+}
+.is-visible .drop {
+	opacity: 1;
+	transform: none;
+}
+.float {
+	animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-8px);
+	}
+}
+.stream {
+	animation: convey 1.5s linear infinite;
+}
+@keyframes convey {
+	to {
+		transform: translateX(var(--cv, 22px));
+	}
+}
+/* the same conveyor, running down the plate instead of across it */
+.streamdown {
+	animation: conveydown 1.5s linear infinite;
+}
+@keyframes conveydown {
+	to {
+		transform: translateY(var(--cvy, 34px));
+	}
+}
+
+/* ---- in-plate motion ---- */
+.pulsering {
+	animation: pulsering 3.4s ease-in-out infinite;
+	transform-box: fill-box;
+	transform-origin: center;
+}
+@keyframes pulsering {
+	0%,
+	100% {
+		opacity: 0.25;
+		transform: scale(0.96);
+	}
+	50% {
+		opacity: 0.7;
+		transform: scale(1.04);
+	}
+}
+.spillout {
+	animation: spillout 4.5s ease-in-out infinite;
+	transform-box: fill-box;
+	transform-origin: center;
+}
+@keyframes spillout {
+	0%,
+	100% {
+		transform: scale(0.82);
+		opacity: 0.55;
+	}
+	50% {
+		transform: scale(1.06);
+		opacity: 1;
+	}
+}
+.emit {
+	animation: emit 3.6s ease-in-out infinite;
+}
+@keyframes emit {
+	0%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+	50% {
+		transform: translate(10px, 10px);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 720px) {
+	svg.plate,
+	svg.plate--wide {
+		width: 96vw;
+		max-height: 62vh;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	.nurdle-story *,
+	.progress {
+		transition: none !important;
+		animation: none !important;
+	}
+	.reveal {
+		opacity: 1;
+		transform: none;
+	}
+	.draw {
+		stroke-dashoffset: 0 !important;
+	}
+	.fade {
+		opacity: 1;
+	}
+	.drop {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+a:focus-visible,
+summary:focus-visible {
+	outline: 2px solid var(--amber);
+	outline-offset: 3px;
+}

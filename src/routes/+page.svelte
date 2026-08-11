@@ -1,161 +1,145 @@
 <script>
-	import Scroller from '$lib/components/layout/Scroller.svelte';
-	import GlobeBackground from '$lib/components/GlobeBackground.svelte';
+	import '$lib/styles/nurdle.css';
+	import '$lib/styles/article.css';
+	import StoryStage from '$lib/components/nurdle/StoryStage.svelte';
+	import ChartPlaceholder from '$lib/components/article/ChartPlaceholder.svelte';
 
-	const steps = [
-		{
-			lat: 10.0,
-			lon: -30.0,
-			place: 'A global problem',
-			text: 'From a single spill site to the most remote corners of the ocean, nurdles travel farther than most people realize.',
-			highlight: false
-		},
-		{
-			lat: 15.0,
-			lon: -30.0,
-			place: 'Nurdles, everywhere',
-			text: 'Nurdles have been detected in all the continents by now.',
-			highlight: false
-		},
-		{
-			lat: -27.073869,
-			lon: -109.323581,
-			place: 'Easter Island (Rapa Nui), Chile',
-			text: 'Nurdles are found from Easter Island (Rapa Nui), Chile, one of the most isolated inhabited islands on Earth.'
-		},
-		{
-			lat: 55.539625,
-			lon: -132.081234,
-			place: 'Ketchikan, Alaska',
-			text: 'Nurdles are found from Ketchikan, Alaska, on the edge of the Tongass National Forest, the largest national forest and temperate rainforest in the US.'
-		},
-		{
-			lat: -0.760755,
-			lon: -90.332014,
-			place: 'Galápagos Islands (Isabela), Ecuador',
-			text: 'Nurdles are found from the Galápagos Islands (Isabela), Ecuador, a UNESCO World Heritage Site and one of the most strictly protected marine reserves on Earth.'
-		},
-		{
-			lat: -3.380916,
-			lon: 39.986579,
-			place: 'Zanzibar / Mombasa coast, Kenya/Tanzania',
-			text: 'Nurdles are found from the Zanzibar / Mombasa coast, Kenya/Tanzania, home to some of the richest coral reef biodiversity in the Indian Ocean.'
-		},
-		{
-			lat: 35.13,
-			lon: 25.75,
-			place: 'Crete / Cyclades, Greece',
-			text: 'Aegean Sea, home to Natura 2000 marine sites and turtle and monk seal conservation zones in a region holding an outsized share of the Mediterranean’s endemic marine life.'
-		}
-	];
+	let scrollY = $state(0);
+	let innerHeight = $state(0);
+	let docHeight = $state(1);
 
-	let index = $state(0);
-	let count = $state(0);
-	let finalSettled = $state(false);
+	const progress = $derived.by(() => {
+		const h = docHeight - innerHeight;
+		return h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 0;
+	});
+
+	function measure() {
+		docHeight = document.documentElement.scrollHeight;
+	}
+
+	$effect(() => {
+		measure();
+	});
 </script>
 
-<div class="page">
-	<header class="intro">
-		<h1>Tracking Nurdle Spills Across the Globe</h1>
-		<p class="byline">By <strong>Dimuthu Attanayake</strong></p>
+<svelte:window bind:scrollY bind:innerHeight onresize={measure} onscroll={measure} />
+
+<svelte:head>
+	<title>How Tiny Plastic Polymers Spilled from Supply Chains Pollute the World</title>
+	<meta
+		name="description"
+		content="How primary plastic polymers used to manufacture plastic products accidentally escape the supply chain and end up in rivers, oceans and beaches."
+	/>
+</svelte:head>
+
+<div class="progress" style="width: {(progress * 100).toFixed(2)}%" aria-hidden="true"></div>
+
+<div class="nurdle-story">
+	<!-- COVER -->
+	<header class="cover is-visible">
+		<svg class="cover__mark reveal" width="52" height="46" viewBox="0 0 52 46" aria-hidden="true">
+			<circle cx="26" cy="23" r="17" fill="var(--pearl)" />
+			<ellipse cx="20" cy="17" rx="5.5" ry="3.4" fill="#fff" opacity="0.6" />
+		</svg>
+		<div class="cover__kicker reveal d1">Plastic Pollution</div>
+		<h1 class="reveal d1">
+			How Tiny Plastic Polymers Spilled from Supply Chains Pollute the World
+		</h1>
+		<p class="dek reveal d2">
+			How primary plastic polymers used to manufacture plastic products accidentally escape the
+			supply chain and end up in rivers, oceans and beaches.
+		</p>
+		<div class="cover__by reveal d2">By Dimuthu Attanayake</div>
+		<div class="scroll-cue reveal d2"><span class="dot"></span> Scroll to begin</div>
 	</header>
 
-	<Scroller top={0} bottom={1} bind:index bind:count>
-		{#snippet background()}
-			<GlobeBackground {steps} {index} bind:finalSettled />
-		{/snippet}
-
-		{#snippet foreground()}
-			{#each steps as step, i}
-				<section class="step">
-					<div class="card" class:hidden={i === steps.length - 1 && finalSettled}>
-						<p class="place">{step.place}</p>
-						<p class="text">{step.text}</p>
-					</div>
-				</section>
-			{/each}
-		{/snippet}
-	</Scroller>
+	<!-- every storyboard beat, on one stage -->
+	<StoryStage />
 </div>
 
-<style>
-	.page {
-		background: #000000;
-	}
+<!--
+  THE WRITTEN STORY — everything below the scrolly.
 
-	.intro {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
-		height: 100vh;
-		padding: 2rem 1.5rem;
-		box-sizing: border-box;
-		text-align: center;
-		font-family: system-ui, sans-serif;
-		background: #000000;
-	}
+  All copy here is placeholder. Replace the text inside each <p> and <h2>; the
+  structure around it (measure-width column, figure blocks, credits) is the
+  finished part. To add a chart, swap a <ChartPlaceholder /> for the real
+  component and leave its <figure> wrapper in place so the title, caption and
+  source line come with it.
+-->
+<article class="article">
+	<div class="article__inner">
+		<h2>PLACEHOLDER: first section heading</h2>
 
-	.intro h1 {
-		margin: 0;
-		max-width: 60rem;
-		font-family: 'Lora', serif;
-		font-size: 5rem;
-		line-height: 1.05;
-		font-weight: 700;
-		color: #ffcc00;
-	}
+		<p class="lede">
+			PLACEHOLDER: the opening paragraph of the written story, set a size larger than the body
+			text. This is where the reader lands after the scrolly ends, so it should pick up the thread
+			the globe left off on rather than start over.
+		</p>
 
-	.byline {
-		margin: 0;
-		font-size: 1.15rem;
-		color: #999999;
-	}
+		<p>
+			PLACEHOLDER: body paragraph. Two or three of these before the first chart, enough to set up
+			what the chart is going to show.
+		</p>
 
-	.byline strong {
-		font-weight: 600;
-		color: #cccccc;
-	}
+		<p>PLACEHOLDER: body paragraph.</p>
+	</div>
 
-	.step {
-		display: flex;
-		align-items: center;
-		height: 100vh;
-		max-width: 26rem;
-		margin: 0 auto;
-		padding: 2rem 1.5rem;
-		box-sizing: border-box;
-		font-family: system-ui, sans-serif;
-	}
+	<!-- CHART 1 — wide -->
+	<figure class="figure figure--wide">
+		<div class="figure__head">
+			<p class="figure__title">PLACEHOLDER: chart one title</p>
+			<p class="figure__standfirst">
+				PLACEHOLDER: one line saying what the reader should take from this chart.
+			</p>
+		</div>
 
-	.card {
-		padding: 1.25rem 1.5rem;
-		border: 1px solid rgba(255, 255, 255, 0.15);
-		border-radius: 0.5rem;
-		background: rgba(0, 0, 0, 0.7);
-		backdrop-filter: blur(4px);
-		color: #ffffff;
-		opacity: 1;
-		transition: opacity 1s ease;
-	}
+		<ChartPlaceholder label="Chart 1" height={420} />
 
-	.card.hidden {
-		opacity: 0;
-		pointer-events: none;
-	}
+		<figcaption>
+			PLACEHOLDER: caption — the detail that doesn't fit in the title.
+			<span class="source">Source: PLACEHOLDER</span>
+		</figcaption>
+	</figure>
 
-	.place {
-		margin: 0 0 0.5rem;
-		font-family: 'Lora', serif;
-		font-size: 1.1rem;
-		font-weight: 700;
-		color: #ffcc00;
-	}
+	<div class="article__inner">
+		<h2>PLACEHOLDER: second section heading</h2>
 
-	.text {
-		margin: 0;
-		line-height: 1.6;
-		color: #e5e5e5;
-	}
-</style>
+		<p>PLACEHOLDER: body paragraph.</p>
+		<p>PLACEHOLDER: body paragraph.</p>
+
+		<blockquote>
+			PLACEHOLDER: a pull quote, if the story has one worth lifting out.
+			<cite>PLACEHOLDER: name, role</cite>
+		</blockquote>
+
+		<p>PLACEHOLDER: body paragraph.</p>
+	</div>
+
+	<!-- CHART 2 — column width -->
+	<div class="article__inner">
+		<figure class="figure">
+			<div class="figure__head">
+				<p class="figure__title">PLACEHOLDER: chart two title</p>
+				<p class="figure__standfirst">PLACEHOLDER: one line on what this chart shows.</p>
+			</div>
+
+			<ChartPlaceholder label="Chart 2" height={340} />
+
+			<figcaption>
+				PLACEHOLDER: caption.
+				<span class="source">Source: PLACEHOLDER</span>
+			</figcaption>
+		</figure>
+
+		<h2>PLACEHOLDER: third section heading</h2>
+
+		<p>PLACEHOLDER: body paragraph.</p>
+		<p>PLACEHOLDER: closing paragraph.</p>
+	</div>
+
+	<footer class="credits">
+		<h2>Notes and sources</h2>
+		<p>PLACEHOLDER: where the data came from, how it was processed, what it does and doesn't cover.</p>
+		<p>Reporting, analysis and graphics by Dimuthu Attanayake.</p>
+	</footer>
+</article>
