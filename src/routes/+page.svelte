@@ -507,19 +507,56 @@
 	</div>
 
 	<!-- CHART 2 — map of maritime nurdle spills, 2020–2026 -->
-	<figure class="figure figure--wide">
-		<div class="figure__head">
-			<p class="figure__title">PLACEHOLDER: chart two title</p>
-			<p class="figure__standfirst">PLACEHOLDER: one line on what this chart shows.</p>
-		</div>
+	<h2 style="
+  color: #DAD3C4;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 8px 0;
+">
+  Nurdle Spills from Maritime Accidents
+</h2>
 
-		<ChartPlaceholder label="Chart 2" height={460} />
+<p style="
+  color: #DAD3C4;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0 0 20px 0;
+">
+  Nurdle spills from maritime accidents between 2020 and 2026
+</p>
 
-		<figcaption>
-			PLACEHOLDER: caption.
-			<span class="source">Source: PLACEHOLDER</span>
-		</figcaption>
-	</figure>
+<iframe
+  title="Nurdle spills from maritime accidents between 2020 and 2026"
+  aria-label="Locator map"
+  id="datawrapper-chart-mNLvW"
+  src="https://datawrapper.dwcdn.net/mNLvW/1/"
+  scrolling="no"
+  frameborder="0"
+  style="width: 0; min-width: 100% !important; border: none;"
+  height="483"
+  data-external="1">
+</iframe>
+
+<script type="text/javascript">
+(function() {
+  window.addEventListener("message", function(event) {
+    if (event.data["datawrapper-height"] !== undefined) {
+      var iframes = document.querySelectorAll("iframe");
+
+      for (var i in event.data["datawrapper-height"]) {
+        for (var j = 0, iframe; iframe = iframes[j]; j++) {
+          if (iframe.contentWindow === event.source) {
+            var height = event.data["datawrapper-height"][i] + "px";
+            iframe.style.height = height;
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
 
 	<div class="article__inner">
 		<p>
