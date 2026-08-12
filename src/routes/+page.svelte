@@ -3,6 +3,7 @@
 	import '$lib/styles/article.css';
 	import StoryStage from '$lib/components/nurdle/StoryStage.svelte';
 	import ChartPlaceholder from '$lib/components/article/ChartPlaceholder.svelte';
+	import PlasticProductionChart from '$lib/components/article/PlasticProductionChart.svelte';
 
 	let scrollY = $state(0);
 	let innerHeight = $state(0);
@@ -636,19 +637,28 @@
 	</div>
 
 	<!-- CHART 3 — global production of primary plastics, 1950–2030 -->
-	<figure class="figure figure--wide">
-		<div class="figure__head">
-			<p class="figure__title">PLACEHOLDER: chart three title</p>
-			<p class="figure__standfirst">PLACEHOLDER: one line on what this chart shows.</p>
-		</div>
+	<div class="article__inner">
+		<figure class="figure">
+			<div class="figure__head">
+				<p class="figure__title">
+					Global production of primary plastics is on track to reach 589 million metric tons by
+					2030
+				</p>
+				<p class="figure__standfirst">Figures after 2019 are an OECD projection.</p>
+			</div>
 
-		<ChartPlaceholder label="Chart 3" height={420} />
+			<PlasticProductionChart />
 
-		<figcaption>
-			PLACEHOLDER: caption.
-			<span class="source">Source: PLACEHOLDER</span>
-		</figcaption>
-	</figure>
+			<figcaption>
+				Production grew from 2 million metric tons in 1950 to 460 million in 2019 — a 230-fold
+				increase over 70 years.
+				<span class="source">
+					Source: Geyer et al. (2017); OECD (2022), via Our World in Data. Chart by Dimuthu
+					Attanayake.
+				</span>
+			</figcaption>
+		</figure>
+	</div>
 
 	<div class="article__inner">
 		<p>
