@@ -51,8 +51,11 @@
 .article p {
 	margin: 0 0 1.35rem;
 	font-family: var(--serif);
-	font-size: clamp(1.05rem, 1.35vw, 1.19rem);
-	line-height: 1.75;
+	/* One size for the whole article, the size the opening paragraph used to
+	   have on its own. Leading comes down a little from the old 1.75 because
+	   the type is bigger — the same ratio at this size reads as gappy. */
+	font-size: clamp(1.2rem, 1.7vw, 1.4rem);
+	line-height: 1.65;
 	color: var(--ink);
 }
 
@@ -61,11 +64,27 @@
 	text-underline-offset: 0.2em;
 }
 
-/* First paragraph of the article, a size up from the rest */
+/* First paragraph of the article. It now shares the body size — what marks it
+   as the opening is the drop cap and a slightly brighter ink. */
 .article .lede {
-	font-size: clamp(1.2rem, 1.7vw, 1.4rem);
 	line-height: 1.6;
 	color: #f6f4ee;
+}
+
+/* Drop cap: the E of "Every week" set across the first three lines.
+   Sized by cap height rather than font size — the glyph is floated, so its
+   line box has to be squeezed (line-height well under 1) for the three lines
+   of text to close up around it instead of clearing it. */
+.article .lede::first-letter {
+	float: left;
+	font-family: var(--serif);
+	font-size: 4.1em;
+	font-weight: 700;
+	line-height: 0.78;
+	/* optical, not metric: the cap's own side bearings are tighter than the
+	   text's, so it needs a nudge down and a gap opened to its right */
+	margin: 0.06em 0.07em -0.06em 0;
+	color: var(--pearl);
 }
 
 .article blockquote {

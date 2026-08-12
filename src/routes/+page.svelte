@@ -246,11 +246,10 @@
 			the actual product,” which she said makes these spills “tricky.”
 		</p>
 
-		<blockquote>
-			You would think [the manufacturer] would do a better job … making sure that the product gets
-			to the customer, not thrown on the ground, or in the ocean in large numbers.
-			<cite>Lauren Godshall, senior attorney, Earthjustice</cite>
-		</blockquote>
+		<p>
+			“You would think [the manufacturer] would do a better job … making sure that the product gets
+			to the customer, not thrown on the ground, or in the ocean in large numbers,” she added.
+		</p>
 
 		<p>
 			Dow Chemical Company and Union Carbide Seadrift Operations did not respond to repeated
@@ -678,11 +677,10 @@
 			would be the first steps toward mitigating these spills.
 		</p>
 
-		<blockquote>
-			If people haven't heard of it, why would they care about it? The plastics industry doesn't
+		<p>
+			“If people haven't heard of it, why would they care about it? The plastics industry doesn't
 			want you to know about it, and it is not good for them to show that they are discharging
-			their product out into the environment.
-			<cite>Jace Tunnell, Harte Research Institute</cite>
-		</blockquote>
+			their product out into the environment.”
+		</p>
 	</div>
 </article>
