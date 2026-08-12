@@ -264,9 +264,11 @@
 			TCEQ did not respond to requests for comment on Formosa's permit, or about its ongoing case
 			with the Seadrift facility.
 		</p>
-		
+
 	<!-- CHART 1 -->
-	<iframe
+	<h2>U.S. Sites Where Nurdle Spills Prompted Legal Action</h2>
+
+<iframe
   title="U.S. Sites Where Nurdle Spills Prompted Legal Action"
   aria-label="Locator map"
   id="datawrapper-chart-1V2dt"
@@ -278,25 +280,24 @@
   data-external="1">
 </iframe>
 
-
-<script>
-(function () {
-  window.addEventListener("message", function (event) {
+<script type="text/javascript">
+(function() {
+  window.addEventListener("message", function(event) {
     if (event.data["datawrapper-height"] !== undefined) {
       var iframes = document.querySelectorAll("iframe");
 
       for (var i in event.data["datawrapper-height"]) {
         for (var j = 0, iframe; iframe = iframes[j]; j++) {
           if (iframe.contentWindow === event.source) {
-            iframe.style.height =
-              event.data["datawrapper-height"][i] + "px";
+            var height = event.data["datawrapper-height"][i] + "px";
+            iframe.style.height = height;
           }
         }
       }
     }
   });
 })();
-</script>	
+</script>
 
 		<h2>Regulating nurdle spills</h2>
 
