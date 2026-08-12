@@ -141,24 +141,7 @@
 		</p>
 	</div>
 
-	<!-- CHART 1 — the types of nurdles and what they become -->
-	<figure class="figure figure--wide">
-		<div class="figure__head">
-			<p class="figure__title">PLACEHOLDER: chart one title</p>
-			<p class="figure__standfirst">
-				PLACEHOLDER: one line saying what the reader should take from this chart.
-			</p>
-		</div>
-
-		<ChartPlaceholder label="Chart 1" height={420} />
-
-		<figcaption>
-			PLACEHOLDER: caption — the detail that doesn't fit in the title.
-			<span class="source">Source: PLACEHOLDER</span>
-		</figcaption>
-	</figure>
-
-	<div class="article__inner">
+    <div class="article__inner">
 		<p>
 			These polymers are also considered one of the most “pervasive forms” of microplastic
 			pollution globally, according to the Great Nurdle Hunt, a global voluntary network
@@ -281,6 +264,39 @@
 			TCEQ did not respond to requests for comment on Formosa's permit, or about its ongoing case
 			with the Seadrift facility.
 		</p>
+		
+	<!-- CHART 1 -->
+	<iframe
+  title="U.S. Sites Where Nurdle Spills Prompted Legal Action"
+  aria-label="Locator map"
+  id="datawrapper-chart-1V2dt"
+  src="https://datawrapper.dwcdn.net/1V2dt/1/"
+  scrolling="no"
+  frameborder="0"
+  style="width: 0; min-width: 100% !important; border: none;"
+  height="519"
+  data-external="1">
+</iframe>
+
+
+<script>
+(function () {
+  window.addEventListener("message", function (event) {
+    if (event.data["datawrapper-height"] !== undefined) {
+      var iframes = document.querySelectorAll("iframe");
+
+      for (var i in event.data["datawrapper-height"]) {
+        for (var j = 0, iframe; iframe = iframes[j]; j++) {
+          if (iframe.contentWindow === event.source) {
+            iframe.style.height =
+              event.data["datawrapper-height"][i] + "px";
+          }
+        }
+      }
+    }
+  });
+})();
+</script>	
 
 		<h2>Regulating nurdle spills</h2>
 
