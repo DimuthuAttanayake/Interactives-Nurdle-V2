@@ -73,8 +73,10 @@
 		/>
 	{/each}
 
-	<!-- Projection: no fill — solid line only -->
-	<path fill="none" stroke="var(--amber)" stroke-width="1.5" d={lineGenerator(PROJECTION)} />
+	<!-- Projection: no fill — solid line only. Same pearl as the observed line,
+	     as in the original; the dashed divider and the labels above carry the
+	     distinction between the two stretches. -->
+	<path fill="none" stroke="var(--pearl)" stroke-width="1.5" d={lineGenerator(PROJECTION)} />
 
 	<!-- History: solid fill + outline -->
 	<path fill="rgba(241, 236, 224, 0.14)" d={areaGenerator(HISTORY)} />

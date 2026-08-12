@@ -2,7 +2,6 @@
 	import '$lib/styles/nurdle.css';
 	import '$lib/styles/article.css';
 	import StoryStage from '$lib/components/nurdle/StoryStage.svelte';
-	import ChartPlaceholder from '$lib/components/article/ChartPlaceholder.svelte';
 	import PlasticProductionChart from '$lib/components/article/PlasticProductionChart.svelte';
 
 	let scrollY = $state(0);
@@ -20,6 +19,29 @@
 
 	$effect(() => {
 		measure();
+	});
+
+	// Datawrapper embeds post their rendered height to the parent window; this
+	// resizes the matching iframe so the map isn't letterboxed or clipped. The
+	// embed code ships one copy of this per chart — one listener covers them
+	// all, and $effect's cleanup takes it off again.
+	$effect(() => {
+		function onMessage(event) {
+			const heights = event.data?.['datawrapper-height'];
+			if (!heights) return;
+
+			for (const key of Object.keys(heights)) {
+				for (const iframe of document.querySelectorAll('iframe')) {
+					if (iframe.contentWindow === event.source) {
+						iframe.style.height = heights[key] + 'px';
+					}
+				}
+			}
+			measure();
+		}
+
+		window.addEventListener('message', onMessage);
+		return () => window.removeEventListener('message', onMessage);
 	});
 </script>
 
@@ -63,9 +85,10 @@
   it starts at the Diane Wilson lede and ends on the closing Tunnell quote. The
   title page and the sources section are deliberately not here.
 
-  The three <ChartPlaceholder /> blocks are the slots waiting on real charts.
-  When a chart is ready, swap the tag for the chart component and leave its
-  <figure> wrapper in place so the title, caption and source line carry over.
+  All three charts are in: two Datawrapper locator maps and the plastic
+  production chart. Each sits in a <figure> that carries its own title,
+  standfirst and — where there is one — caption and source line, so every
+  chart is furnished the same way regardless of what draws it.
 -->
 <article class="article">
 	<div class="article__inner">
@@ -266,39 +289,24 @@
 			with the Seadrift facility.
 		</p>
 
-	<!-- CHART 1 -->
-	<h2>U.S. Sites Where Nurdle Spills Prompted Legal Action</h2>
+		<!-- CHART 1 — Datawrapper locator map -->
+		<figure class="figure">
+			<div class="figure__head">
+				<p class="figure__title">U.S. Sites Where Nurdle Spills Prompted Legal Action</p>
+			</div>
 
-<iframe
-  title="U.S. Sites Where Nurdle Spills Prompted Legal Action"
-  aria-label="Locator map"
-  id="datawrapper-chart-1V2dt"
-  src="https://datawrapper.dwcdn.net/1V2dt/1/"
-  scrolling="no"
-  frameborder="0"
-  style="width: 0; min-width: 100% !important; border: none;"
-  height="519"
-  data-external="1">
-</iframe>
-
-<script type="text/javascript">
-(function() {
-  window.addEventListener("message", function(event) {
-    if (event.data["datawrapper-height"] !== undefined) {
-      var iframes = document.querySelectorAll("iframe");
-
-      for (var i in event.data["datawrapper-height"]) {
-        for (var j = 0, iframe; iframe = iframes[j]; j++) {
-          if (iframe.contentWindow === event.source) {
-            var height = event.data["datawrapper-height"][i] + "px";
-            iframe.style.height = height;
-          }
-        }
-      }
-    }
-  });
-})();
-</script>
+			<iframe
+				title="U.S. Sites Where Nurdle Spills Prompted Legal Action"
+				aria-label="Locator map"
+				id="datawrapper-chart-1V2dt"
+				src="https://datawrapper.dwcdn.net/1V2dt/1/"
+				scrolling="no"
+				frameborder="0"
+				style="width: 0; min-width: 100% !important; border: none;"
+				height="519"
+				data-external="1"
+			></iframe>
+		</figure>
 
 		<h2>Regulating nurdle spills</h2>
 
@@ -507,57 +515,29 @@
 		</p>
 	</div>
 
-	<!-- CHART 2 — map of maritime nurdle spills, 2020–2026 -->
-	<h2 style="
-  color: #DAD3C4;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.15;
-  margin: 0 0 8px 0;
-">
-  Nurdle Spills from Maritime Accidents
-</h2>
+	<!-- CHART 2 — Datawrapper map of maritime nurdle spills, 2020–2026 -->
+	<div class="article__inner">
+		<figure class="figure">
+			<div class="figure__head">
+				<p class="figure__title">Nurdle Spills from Maritime Accidents</p>
+				<p class="figure__standfirst">
+					Nurdle spills from maritime accidents between 2020 and 2026
+				</p>
+			</div>
 
-<p style="
-  color: #DAD3C4;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.4;
-  margin: 0 0 20px 0;
-">
-  Nurdle spills from maritime accidents between 2020 and 2026
-</p>
-
-<iframe
-  title="Nurdle spills from maritime accidents between 2020 and 2026"
-  aria-label="Locator map"
-  id="datawrapper-chart-mNLvW"
-  src="https://datawrapper.dwcdn.net/mNLvW/1/"
-  scrolling="no"
-  frameborder="0"
-  style="width: 0; min-width: 100% !important; border: none;"
-  height="483"
-  data-external="1">
-</iframe>
-
-<script type="text/javascript">
-(function() {
-  window.addEventListener("message", function(event) {
-    if (event.data["datawrapper-height"] !== undefined) {
-      var iframes = document.querySelectorAll("iframe");
-
-      for (var i in event.data["datawrapper-height"]) {
-        for (var j = 0, iframe; iframe = iframes[j]; j++) {
-          if (iframe.contentWindow === event.source) {
-            var height = event.data["datawrapper-height"][i] + "px";
-            iframe.style.height = height;
-          }
-        }
-      }
-    }
-  });
-})();
-</script>
+			<iframe
+				title="Nurdle spills from maritime accidents between 2020 and 2026"
+				aria-label="Locator map"
+				id="datawrapper-chart-mNLvW"
+				src="https://datawrapper.dwcdn.net/mNLvW/1/"
+				scrolling="no"
+				frameborder="0"
+				style="width: 0; min-width: 100% !important; border: none;"
+				height="483"
+				data-external="1"
+			></iframe>
+		</figure>
+	</div>
 
 	<div class="article__inner">
 		<p>

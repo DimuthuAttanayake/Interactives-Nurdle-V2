@@ -502,11 +502,9 @@
 		{#each BEATS as beat, i}
 			<div class="step" style="height: {STEP_SLOTS[i] * 100}vh">
 				<div class="step__card {beat.tone}">
-					<!-- only the globe tour is labelled: there the place name is the
-					     point, everywhere else the copy speaks for itself -->
-					{#if beat.layout === 'globe'}
-						<p class="place">{beat.tag}</p>
-					{/if}
+					<!-- No headline on any beat. The globe tour used to carry its place
+					     name as a coloured label, but each of those beats already names
+					     the place in its own first line, so the label only repeated it. -->
 					<p class="text">{beat.text}</p>
 				</div>
 			</div>
