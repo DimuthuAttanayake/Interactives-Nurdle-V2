@@ -126,11 +126,13 @@
 }
 
 .figure__title {
-	margin: 0 0 0.3rem;
+	margin: 0 0 0.4rem;
 	font-family: var(--sans);
-	font-size: 1.02rem;
+	/* A step above the body text — the same clamp shifted up, so the chart
+	   headline stays a fixed amount larger than the prose at every width. */
+	font-size: clamp(1.35rem, 1.95vw, 1.6rem);
 	font-weight: 600;
-	line-height: 1.3;
+	line-height: 1.25;
 	color: var(--ink);
 }
 

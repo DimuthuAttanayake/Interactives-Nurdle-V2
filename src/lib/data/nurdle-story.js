@@ -47,7 +47,7 @@ export const BEATS = [
 	{
 		id: '03',
 		tag: 'Where they are born',
-		text: 'Plastics are a byproduct of oil and gas production, and leftover chemicals from refining the oil and gas are used to manufacture nurdles.',
+		text: 'Leftover chemicals from refining the oil and gas are used to manufacture nurdles.',
 		tone: 'a',
 		scene: 'refinery',
 		layout: 'hidden'
@@ -75,7 +75,7 @@ export const BEATS = [
 		tag: 'Loaded onto ship',
 		// carries what used to be its own sceneless step (05.0), so the reader
 		// never sits on a bare particle field
-		text: '…or by ships. Nurdles are released to the environment as a result of routine handling failures and accidents along the supply chain. They are a lesser-known form of industrial pollution, and one of the most pervasive forms of microplastic pollution globally.',
+		text: '…or by ships. Nurdles are released to the environment as a result of routine handling failures and accidents along the supply chain. They are a lesser-known form of industrial pollution.',
 		tone: 'a',
 		scene: 'journey',
 		pan: 1,
@@ -84,7 +84,7 @@ export const BEATS = [
 	{
 		id: '05.1',
 		tag: 'Rail derailment',
-		text: 'Rail accidents, for example, have spilled nurdles into the environment, where they often end up in water systems.',
+		text: 'Rail accidents, for example, have spilled nurdles into the environment, and they often end up in water systems.',
 		tone: 'a',
 		scene: 'derail',
 		// the accident plates carry their own spilled pellets, so the canvas
@@ -208,7 +208,7 @@ export const BEATS = [
 	{
 		id: '06.8',
 		tag: 'Seadrift, Texas',
-		text: 'In the US, regulations for nurdle spills are patchy.',
+		text: 'In the U.S., regulations for nurdle spills are patchy.',
 		tone: 'g',
 		scene: null,
 		layout: 'globe',
@@ -217,7 +217,7 @@ export const BEATS = [
 	{
 		id: '06.9',
 		tag: 'Seadrift, Texas',
-		text: 'On the Gulf Coast of Texas, citizens have taken up the fight.',
+		text: 'On the Gulf Coast of Texas, citizens have taken up the fight…',
 		tone: 'g',
 		scene: null,
 		layout: 'globe',
