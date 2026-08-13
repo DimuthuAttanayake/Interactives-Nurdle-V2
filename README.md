@@ -1,4 +1,4 @@
-# Postscript
+# Methodology
 
 In 2021, when the X-Press Pearl disaster happened off the coast of Sri Lanka, I was there and observed how the impacts happened in real life. But in the beginning, most of the focus was on chemicals, and how the nurdles carried the chemicals. There was little attention to the nurdle spill by itself. Then, in 2024, I was at the UN headquarters in New York City on a reporting fellowship, and I spoke with Inger Andersen, the executive director of the UN Environment Programme (UNEP), about nurdle spills. It was right before the expected signing of the global plastics treaty (it's still not signed), but she told me about how the treaty is aiming to reduce plastic production at the source, and how this may reduce similar maritime accidents.
 
