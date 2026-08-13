@@ -125,7 +125,11 @@
 	margin-bottom: 1rem;
 }
 
-.figure__title {
+/* Both of these have to be qualified with .article. They are <p> elements, so
+   the bare class (0,1,0) loses to `.article p` (0,1,1) and the figure would
+   silently render as body copy — serif, body size — no matter what is set
+   here. */
+.article .figure__title {
 	margin: 0 0 0.4rem;
 	font-family: var(--sans);
 	/* Clearly above the body text — the same clamp shifted up, so the chart
@@ -136,10 +140,10 @@
 	color: var(--ink);
 }
 
-.figure__standfirst {
+.article .figure__standfirst {
 	margin: 0;
 	font-family: var(--sans);
-	font-size: 0.9rem;
+	font-size: 1rem;
 	line-height: 1.45;
 	color: var(--muted);
 }
