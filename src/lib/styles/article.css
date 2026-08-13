@@ -27,7 +27,7 @@
 .article h2 {
 	margin: clamp(3rem, 6vw, 4.5rem) 0 1.25rem;
 	font-family: var(--serif);
-	font-size: clamp(1.5rem, 3.2vw, 2rem);
+	font-size: clamp(1.6rem, 3.4vw, 2.125rem);
 	font-weight: 700;
 	line-height: 1.2;
 	letter-spacing: -0.01em;
@@ -161,7 +161,6 @@
 	margin-top: 0.35rem;
 	font-size: 0.75rem;
 	letter-spacing: 0.04em;
-	text-transform: uppercase;
 }
 
 /* ---------- credits ---------- */
