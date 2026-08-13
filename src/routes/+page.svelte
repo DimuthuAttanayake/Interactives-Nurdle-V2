@@ -181,14 +181,15 @@
 
 		<figure class="figure">
 			<img
-				src="{assets}/images/nurdles-in-hand.jpg"
-				alt="A jar of collected nurdles beside a handful of the white pellets spread across a notebook, with two hands resting on the table."
+				src="{assets}/images/nurdle-in-sand.jpg"
+				alt="A gloved finger points at a single pale nurdle lying among orange sand grains, with a jar of collected pellets nearby."
 				width="1600"
 				height="900"
 				loading="lazy"
 			/>
 			<figcaption>
-				A volunteer counting the nurdles collected from the Mount Lavinia beach, Sri Lanka in 2025.
+				A volunteer points to a fresh nurdle on Mount Lavinia beach, Sri Lanka, washed up after the
+				shipping accidents off the coast of South India in 2025.
 				<span class="source">Photo: Dimuthu Attanayake</span>
 			</figcaption>
 		</figure>
@@ -675,15 +676,14 @@
 
 		<figure class="figure">
 			<img
-				src="{assets}/images/nurdle-in-sand.jpg"
-				alt="A gloved finger points at a single pale nurdle lying among orange sand grains, with a jar of collected pellets nearby."
+				src="{assets}/images/nurdles-in-hand.jpg"
+				alt="A jar of collected nurdles beside a handful of the white pellets spread across a notebook, with two hands resting on the table."
 				width="1600"
 				height="900"
 				loading="lazy"
 			/>
 			<figcaption>
-				A volunteer points to a fresh nurdle on Mount Lavinia beach, Sri Lanka, washed up after the
-				shipping accidents off the coast of South India in 2025.
+				A volunteer counting the nurdles collected from the Mount Lavinia beach, Sri Lanka in 2025.
 				<span class="source">Photo: Dimuthu Attanayake</span>
 			</figcaption>
 		</figure>
