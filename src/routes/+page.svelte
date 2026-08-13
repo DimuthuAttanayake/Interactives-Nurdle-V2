@@ -140,20 +140,6 @@
 			around, every week.
 		</p>
 
-		<figure class="figure">
-			<img
-				src="{assets}/images/nurdles-in-hand.jpg"
-				alt="A jar of collected nurdles beside a handful of the white pellets spread across a notebook, with two hands resting on the table."
-				width="1600"
-				height="900"
-				loading="lazy"
-			/>
-			<figcaption>
-				Nurdles collected in a jar, with a handful spread out on a notebook.
-				<span class="source">Photo: PLACEHOLDER — photographer, location, date</span>
-			</figcaption>
-		</figure>
-
 		<p>
 			Because of their small size, nurdles remain elusive on the beaches, in riverbeds, and in
 			marshes. Unlike other types of plastics, their size and color make efforts to remove them from
@@ -192,6 +178,20 @@
 			to a 2024 study published by Galgani and Rangel-Buitrago in the Journal of Hazardous
 			Materials.
 		</p>
+
+		<figure class="figure">
+			<img
+				src="{assets}/images/nurdles-in-hand.jpg"
+				alt="A jar of collected nurdles beside a handful of the white pellets spread across a notebook, with two hands resting on the table."
+				width="1600"
+				height="900"
+				loading="lazy"
+			/>
+			<figcaption>
+				A volunteer counting the nurdles collected from the Mount Lavinia beach, Sri Lanka in 2025.
+				<span class="source">Photo: Dimuthu Attanayake</span>
+			</figcaption>
+		</figure>
 
 		<p>
 			Research has shown that nurdles are highly absorbent and disintegrate into smaller
@@ -332,11 +332,11 @@
 				title="U.S. Sites Where Nurdle Spills Prompted Legal Action"
 				aria-label="Locator map"
 				id="datawrapper-chart-1V2dt"
-				src="https://datawrapper.dwcdn.net/1V2dt/1/"
+				src="https://datawrapper.dwcdn.net/1V2dt/3/"
 				scrolling="no"
 				frameborder="0"
 				style="width: 0; min-width: 100% !important; border: none;"
-				height="519"
+				height="483"
 				data-external="1"
 			></iframe>
 		</figure>
@@ -545,8 +545,8 @@
 				loading="lazy"
 			/>
 			<figcaption>
-				Nurdles in a range of colours and shapes, collected in a sample vial.
-				<span class="source">Photo: PLACEHOLDER — photographer, location, date</span>
+				Multicoloured nurdles of different shapes collected by Buffalo Niagara Waterkeeper.
+				<span class="source">Photo courtesy: Buffalo Niagara Waterkeeper</span>
 			</figcaption>
 		</figure>
 
@@ -587,7 +587,7 @@
 				title="Nurdle spills from maritime accidents between 2020 and 2026"
 				aria-label="Locator map"
 				id="datawrapper-chart-mNLvW"
-				src="https://datawrapper.dwcdn.net/mNLvW/1/"
+				src="https://datawrapper.dwcdn.net/mNLvW/2/"
 				scrolling="no"
 				frameborder="0"
 				style="width: 0; min-width: 100% !important; border: none;"
@@ -682,8 +682,9 @@
 				loading="lazy"
 			/>
 			<figcaption>
-				A gloved hand points to a nurdle among the sand grains on a beach.
-				<span class="source">Photo: PLACEHOLDER — photographer, location, date</span>
+				A volunteer points to a fresh nurdle on Mount Lavinia beach, Sri Lanka, washed up after the
+				shipping accidents off the coast of South India in 2025.
+				<span class="source">Photo: Dimuthu Attanayake</span>
 			</figcaption>
 		</figure>
 
