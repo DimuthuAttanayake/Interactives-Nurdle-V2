@@ -125,6 +125,16 @@
 	margin-bottom: 1rem;
 }
 
+/* Photographs. The width/height attributes on the tag reserve the right box
+   before the file arrives, and `height: auto` lets the image scale inside the
+   column without the attributes squashing it. */
+.figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 0.35rem;
+}
+
 /* Both of these have to be qualified with .article. They are <p> elements, so
    the bare class (0,1,0) loses to `.article p` (0,1,1) and the figure would
    silently render as body copy — serif, body size — no matter what is set

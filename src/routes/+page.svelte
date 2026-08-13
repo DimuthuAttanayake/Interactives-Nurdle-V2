@@ -4,6 +4,11 @@
 	import StoryStage from '$lib/components/nurdle/StoryStage.svelte';
 	import PlasticProductionChart from '$lib/components/article/PlasticProductionChart.svelte';
 
+	// `assets` is '' at the domain root and a relative prefix once the site is
+	// served from a repo subpath, which is how these resolve on GitHub Pages.
+	// A bare /images/... would 404 there.
+	import { assets } from '$app/paths';
+
 	let scrollY = $state(0);
 	let innerHeight = $state(0);
 	let docHeight = $state(1);
@@ -135,6 +140,20 @@
 			around, every week.
 		</p>
 
+		<figure class="figure">
+			<img
+				src="{assets}/images/nurdles-in-hand.jpg"
+				alt="A jar of collected nurdles beside a handful of the white pellets spread across a notebook, with two hands resting on the table."
+				width="1600"
+				height="900"
+				loading="lazy"
+			/>
+			<figcaption>
+				Nurdles collected in a jar, with a handful spread out on a notebook.
+				<span class="source">Photo: PLACEHOLDER — photographer, location, date</span>
+			</figcaption>
+		</figure>
+
 		<p>
 			Because of their small size, nurdles remain elusive on the beaches, in riverbeds, and in
 			marshes. Unlike other types of plastics, their size and color make efforts to remove them from
@@ -222,9 +241,9 @@
 				target="_blank"
 				rel="noopener">The State of Texas sued Dow in February 2026</a
 			>
-			— just months after Wilson’s notice — for violating the Texas Water Code, the Texas Solid
-			Waste Disposal Act and other regulations and permits. Lauren Godshall, senior attorney for
-			Earthjustice and lead counsel for Wilson,
+			— just months after Wilson’s notice — for violating the Texas Water Code, the Texas Solid Waste
+			Disposal Act and other regulations and permits. Lauren Godshall, senior attorney for Earthjustice
+			and lead counsel for Wilson,
 			<a
 				href="https://earthjustice.org/wp-content/uploads/2026/03/2026.03.19-sabew-petition-in-intervention-2.pdf"
 				target="_blank"
@@ -517,6 +536,20 @@
 			shape, according to the images shared by Cute.
 		</p>
 
+		<figure class="figure">
+			<img
+				src="{assets}/images/coloured-nurdles.jpg"
+				alt="A glass sample vial held in a palm, holding nurdles in grey, blue, green, yellow, red and cream, some rounded and some cylindrical."
+				width="1180"
+				height="664"
+				loading="lazy"
+			/>
+			<figcaption>
+				Nurdles in a range of colours and shapes, collected in a sample vial.
+				<span class="source">Photo: PLACEHOLDER — photographer, location, date</span>
+			</figcaption>
+		</figure>
+
 		<p>In 2025, they collected 10,000 nurdles between May and October, Cute said.</p>
 
 		<p>
@@ -639,6 +672,20 @@
 			1,000 sacks of nurdles from a Liberian-flagged ship ended up on the Galician coast in Spain,
 			according to media reports.
 		</p>
+
+		<figure class="figure">
+			<img
+				src="{assets}/images/nurdle-in-sand.jpg"
+				alt="A gloved finger points at a single pale nurdle lying among orange sand grains, with a jar of collected pellets nearby."
+				width="1600"
+				height="900"
+				loading="lazy"
+			/>
+			<figcaption>
+				A gloved hand points to a nurdle among the sand grains on a beach.
+				<span class="source">Photo: PLACEHOLDER — photographer, location, date</span>
+			</figcaption>
+		</figure>
 
 		<p>
 			Tunnell says these frequent nurdle spills stem from the increased production of raw plastics
