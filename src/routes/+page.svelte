@@ -765,5 +765,14 @@
 			want you to know about it, and it is not good for them to show that they are discharging their
 			product out into the environment.”
 		</p>
+
+		<p class="endnote">
+			Methodology and full analysis
+			<a
+				href="https://github.com/DimuthuAttanayake/Interactives-Nurdle-V2"
+				target="_blank"
+				rel="noopener">here</a
+			>.
+		</p>
 	</div>
 </article>

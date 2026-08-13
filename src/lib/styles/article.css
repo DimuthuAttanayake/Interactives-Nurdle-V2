@@ -87,6 +87,23 @@
 	color: var(--pearl);
 }
 
+/* The sign-off under the last paragraph. Sans and small so it reads as
+   apparatus rather than as another line of the story. */
+.article .endnote {
+	margin-top: clamp(2.5rem, 5vw, 3.5rem);
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--line);
+	font-family: var(--sans);
+	font-size: 0.9rem;
+	line-height: 1.6;
+	color: var(--muted);
+}
+
+.article .endnote a {
+	color: var(--teal);
+	text-underline-offset: 0.2em;
+}
+
 .article blockquote {
 	margin: 2.25rem 0;
 	padding-left: 1.25rem;
