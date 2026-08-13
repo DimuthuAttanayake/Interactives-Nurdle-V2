@@ -144,7 +144,7 @@
 	font-family: var(--sans);
 	/* A step above the body text — the same clamp shifted up, so the chart
 	   headline stays a fixed amount larger than the prose at every width. */
-	font-size: clamp(1.3rem, 1.95vw, 1.625rem);
+	font-size: clamp(1.25rem, 1.85vw, 1.525rem);
 	font-weight: 600;
 	line-height: 1.25;
 	color: var(--ink);
